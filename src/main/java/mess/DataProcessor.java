@@ -1,11 +1,13 @@
 package mess;
 
+import mess.model.Duplet;
+import org.apache.commons.collections4.CollectionUtils;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
-import mess.model.Duplet;
 
 public class DataProcessor {
 
@@ -16,6 +18,14 @@ public class DataProcessor {
      * (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ Such amaze, much wow.
      */
     public List<Duplet> doIt(List<Duplet> duplets, double momentum) {
+        if (CollectionUtils.isEmpty(duplets)) {
+            throw new IllegalArgumentException("Input duplets cannot be empty");
+        }
+
+        if (momentum <= 0) {
+            throw new IllegalArgumentException("Illegal value of momentum");
+        }
+
         final Duplet a = new Duplet(duplets.get(0).getA(), duplets.get(0).getB());
         final Duplet b = new Duplet(duplets.get(1).getA(), duplets.get(1).getB());
         final Duplet c = new Duplet(duplets.get(2).getA(), duplets.get(2).getB());

@@ -1,26 +1,36 @@
 package mess.utils;
 
 import mess.model.Duplet;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DataLoader {
 
-    public List<Duplet> load(String fileName) throws IOException {
+    public List<Duplet> extractDuplets(String resourceName) throws IOException {
+        if (StringUtils.isEmpty(resourceName)) {
+            return new ArrayList<>();
+        }
+
         final JsonParser jp = new JsonParser();
 
-        return jp.map(loadData(fileName));
+        return jp.map(readResource(resourceName));
     }
 
-    public String loadData(String fileName) throws IOException {
+    public String readResource(String resourceName) throws IOException {
+        if (StringUtils.isEmpty(resourceName)) {
+            return null;
+        }
+
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
 
-        try (InputStream is = classLoader.getResourceAsStream(fileName)) {
+        try (InputStream is = classLoader.getResourceAsStream(resourceName)) {
 
             if (is == null) {
                 return null;
