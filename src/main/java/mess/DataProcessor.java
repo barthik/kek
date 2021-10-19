@@ -1,31 +1,29 @@
 package mess;
 
-import mess.model.Duplet;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
+import mess.model.Duplet;
 
 public class DataProcessor {
 
     /**
-     * I wondered how to calculate some data, and suddenly, walking on the street, I figured it out.
-     * I have never seen such beauty in my poor life. It's just so amazing. I cried out of pure happiness when
-     * I wrote this method.
+     * I wondered how to calculate some data, and suddenly, walking on the street, I figured it out. I have never seen
+     * such beauty in my poor life. It's just so amazing. I cried out of pure happiness when I wrote this method.
      * <p>
      * (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ Such amaze, much wow.
      */
-    public List<Duplet> doIt(List<Duplet> duplets) {
+    public List<Duplet> doIt(List<Duplet> duplets, double momentum) {
         final Duplet a = new Duplet(duplets.get(0).getA(), duplets.get(0).getB());
         final Duplet b = new Duplet(duplets.get(1).getA(), duplets.get(1).getB());
         final Duplet c = new Duplet(duplets.get(2).getA(), duplets.get(2).getB());
         final Duplet d = new Duplet(duplets.get(3).getA(), duplets.get(3).getB());
 
-        return DoubleStream.iterate(0, operand -> operand + 0.1)
+        return DoubleStream.iterate(0, operand -> operand + momentum)
                 .parallel()
-                .limit(11)
+                .limit((long) (1 / momentum) + 1)
                 .boxed()
                 .map(i -> Arrays.asList(i, (1 - i)))
                 .map(

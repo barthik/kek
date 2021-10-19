@@ -5,10 +5,10 @@
 *.log
 
 # Gradle files
-*.gradle
 gradle
 gradlew
 gradlew.bat
+.gradle/
 
 # Idea stuff
 *.idea

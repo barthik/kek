@@ -1,12 +1,11 @@
 package mess;
 
-import lombok.Data;
-import mess.model.Duplet;
-import mess.utils.DataLoader;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import lombok.Data;
+import mess.model.Duplet;
+import mess.utils.DataLoader;
 
 @Data
 public class DataStore {
@@ -36,6 +35,22 @@ public class DataStore {
         for (int i = 0; i < duplets.size(); i++) {
             this.data.put(i, duplets.get(i));
         }
+    }
+
+    public void next() throws InterruptedException {
+        HashMap<Integer, Duplet> next = new HashMap<>();
+
+        next.put(0, new Duplet(this.data.get(this.data.size() - 1).getA(), this.data.get(this.data.size() - 1).getB()));
+
+        for (int i = 1; i < data.size(); i++) {
+            next.put(i, new Duplet((double) getNumber(MIN_VALUE, MAX_VALUE), (double) getNumber(MIN_VALUE, MAX_VALUE)));
+        }
+
+        this.data.clear();
+
+        this.data = next;
+
+        Thread.sleep(1000);
     }
 
     private void init() {
