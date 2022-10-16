@@ -23,7 +23,7 @@ public class Application {
 
         ds.load(FILE);
 
-        // TODO: I think now it works, but some tests would be nice
+        // TODO: I think it works, but some tests would be nice
         do {
             List<Duplet> result = dp.doIt(
                     ds.getData()

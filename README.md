@@ -1,1 +1,3 @@
 # The example of bad code
+
+Check resources for more hints...
