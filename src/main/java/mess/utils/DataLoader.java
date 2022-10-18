@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Objects.isNull;
+
 public class DataLoader {
 
     public List<Duplet> extractDuplets(String resourceName) throws IOException {
@@ -32,7 +34,7 @@ public class DataLoader {
 
         try (InputStream is = classLoader.getResourceAsStream(resourceName)) {
 
-            if (is == null) {
+            if (isNull(is)) {
                 return null;
             }
 

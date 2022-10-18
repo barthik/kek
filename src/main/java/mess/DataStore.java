@@ -28,6 +28,7 @@ public class DataStore {
         if (StringUtils.isEmpty(resourceName)) {
             throw new IllegalArgumentException("Resource name cannot be empty");
         }
+
         final DataLoader dl = new DataLoader();
 
         List<Duplet> duplets = dl.extractDuplets(resourceName);

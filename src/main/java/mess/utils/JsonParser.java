@@ -16,7 +16,8 @@ public class JsonParser {
             return new ArrayList<>();
         }
 
-        return new ObjectMapper().readValue(json, new TypeReference<List<Duplet>>() {});
+        return new ObjectMapper().readValue(json, new TypeReference<>() {
+        });
     }
 
 }
